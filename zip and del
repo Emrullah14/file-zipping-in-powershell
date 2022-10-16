@@ -1,0 +1,5 @@
+$month = Read-Host "Hangi Ay?"
+$topfolder = Split-Path -Parent $pwd
+
+Get-ChildItem -Path $pwd -Recurse | Where-Object {($_.LastWriteTime -lt (Get-Date).AddDays(-30))} | Compress-Archive -DestinationPath $topfolder\$month.zip
+Get-ChildItem -Path $pwd -Recurse | Where-Object {($_.LastWriteTime -lt (Get-Date).AddDays(-30))} | Remove-Item
